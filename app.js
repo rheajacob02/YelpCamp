@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const localStrategy = require('passport-local');
+const mongoSanitize = require('express-mongo-sanitize');
 const ExpressError = require('./utils/ExpressError');
 const User = require('./models/user');
 
@@ -50,6 +51,7 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(mongoSanitize())
 
 app.use(passport.initialize());
 app.use(passport.session());
